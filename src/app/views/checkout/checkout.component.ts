@@ -24,7 +24,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   payment(): void {
-    
+    this.checkoutService.showMessage("Payment!", true);
+    this.route.navigate(['../list-films'])
   }
 
   cancel(): void {
