@@ -59,7 +59,8 @@
                         <mat-hint>Ex.: Boa Vista Avenue...</mat-hint>
                     </mat-form-field>
                 </p>
-                
+                <button type="submit" mat-flat-button class="mat-pay" (click)="payment()" [disabled]="disable === true">Pay</button>
+                <button mat-flat-button class="mat-cancel" (click)="cancel()">{{ disable ? "Back" : "Cancel"}}</button>
             </form>
         </mat-card>
     </mat-card>

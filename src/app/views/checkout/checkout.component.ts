@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Film } from '../list-films/film.model';
 import { CheckoutService } from './checkout.service';
 
@@ -14,12 +15,20 @@ export class CheckoutComponent implements OnInit {
   hide = true;
   form: any;
 
-  constructor(private checkoutService: CheckoutService) { }
+  constructor(private checkoutService: CheckoutService, private route: Router) { }
 
   ngOnInit(): void {
     this.totalPrice = this.checkoutService.totalPrice;
     this.listSelectedFilms = this.checkoutService.listSelectedFilms;
     this.toggleButton();
+  }
+
+  payment(): void {
+    
+  }
+
+  cancel(): void {
+    this.route.navigate(['../list-films']);
   }
 
   toggleButton() {
