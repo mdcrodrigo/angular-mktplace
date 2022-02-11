@@ -8,6 +8,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './components/templates/header/header.component';
@@ -18,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CardFilmComponent } from './components/templates/card-film/card-film.component';
 import { ListFilmsComponent } from './views/list-films/list-films.component';
 import { SelectButtonComponent } from './components/templates/select-button/select-button.component';
+import { CheckoutComponent } from './views/checkout/checkout.component';
 
 
 @NgModule({
@@ -29,7 +34,8 @@ import { SelectButtonComponent } from './components/templates/select-button/sele
     HomeComponent,
     CardFilmComponent,
     ListFilmsComponent,
-    SelectButtonComponent
+    SelectButtonComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +47,11 @@ import { SelectButtonComponent } from './components/templates/select-button/sele
     MatCardModule,
     HttpClientModule,
     MatButtonModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatBadgeModule
     ],
   providers: [],
   bootstrap: [AppComponent]
