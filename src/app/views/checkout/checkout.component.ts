@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+//import { threadId } from 'worker_threads';
 import { Film } from '../list-films/film.model';
 import { CheckoutService } from './checkout.service';
 
@@ -14,16 +15,32 @@ export class CheckoutComponent implements OnInit {
   disable = false;
   hide = true;
   form: any;
+  client: any = {};
+
 
   constructor(private checkoutService: CheckoutService, private route: Router) { }
 
   ngOnInit(): void {
+    this.form = document.querySelector('#form');
+    this.form.addEventListener('click', (event: any) => {
+      event.preventDefault();
+    })
     this.totalPrice = this.checkoutService.totalPrice;
     this.listSelectedFilms = this.checkoutService.listSelectedFilms;
     this.toggleButton();
   }
 
   payment(): void {
+    if (
+    this.client.address === undefined ||
+    this.client.name === undefined ||
+    this.client.password === undefined
+    ) {
+      this.checkoutService.showMessage('Please enter a valid data', false);
+    } else {
+      this.checkoutService.showMessage(`Payment is sucessfully, good choice! Confirmed order: to $(this.client.address) by $(this.client.name)`, true);    
+    }
+
     this.checkoutService.showMessage("Payment!", true);
     this.route.navigate(['../list-films'])
   }
@@ -38,11 +55,11 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  exclude(film:Film): void {
+  exclude(film: Film): void {
     this.totalPrice -= film.price;
     this.checkoutService.setFilm(film);
     this.checkoutService.unselectFilm();
-    if (this.totalPrice <=0) {
+    if (this.totalPrice <= 0) {
       this.excludeAll();
     }
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CheckoutService } from '../checkout/checkout.service';
 import { Film } from './film.model';
 
@@ -9,15 +10,27 @@ import { Film } from './film.model';
 })
 export class ListFilmsComponent implements OnInit {
   listFilms: Film[] = [];
+  listSelectedFilms!: number;
+  hidden = false;
 
-  constructor(private checkoutService: CheckoutService) {
-    
-   }
+  constructor(private checkoutService: CheckoutService, private route: Router) { }
 
   ngOnInit(): void {
     this.checkoutService.getListFilms().subscribe((Film) => {
       this.listFilms = Film
     })
+  }
+
+  toggleBadgeVisibility() {
+    this.hidden = !this.hidden;
+  }
+
+  toggleCount() {
+    return this.listSelectedFilms = this.checkoutService.listSelectedFilms.length;
+  }
+
+  toCheckout(): void {
+    this.route.navigate(['../checkout']);
   }
 
 }
