@@ -39,10 +39,11 @@ export class CheckoutComponent implements OnInit {
       this.checkoutService.showMessage('Please enter a valid data', false);
     } else {
       this.checkoutService.showMessage(`Payment is sucessfully, good choice! Confirmed order: to $(this.client.address) by $(this.client.name)`, true);    
+      this.route.navigate(['../list-films'])
     }
 
     this.checkoutService.showMessage("Payment!", true);
-    this.route.navigate(['../list-films'])
+    
   }
 
   cancel(): void {

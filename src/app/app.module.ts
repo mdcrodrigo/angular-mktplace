@@ -59,3 +59,4 @@ import { CheckoutComponent } from './views/checkout/checkout.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
